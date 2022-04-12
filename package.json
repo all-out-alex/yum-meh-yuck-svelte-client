@@ -13,6 +13,7 @@
     "@rollup/plugin-node-resolve": "^11.0.0",
     "@rollup/plugin-typescript": "^8.0.0",
     "@tsconfig/svelte": "^2.0.0",
+    "@types/node-emoji": "^1.8.1",
     "carbon-components-svelte": "^0.62.3",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",

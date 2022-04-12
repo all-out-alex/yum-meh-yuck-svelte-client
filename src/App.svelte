@@ -1,13 +1,18 @@
 <script lang="ts">
 	export let name: string;
-	// import type { CarbonTheme } from "carbon-components-svelte/types/Theme/Theme.svelte";
-	import {
-    Theme,
-    // RadioButtonGroup,
-    // RadioButton,
+  import {
+    Header,
+    HeaderNav,
+    HeaderNavItem,
+    HeaderNavMenu,
+    SkipToContent,
+    Content,
+    Grid,
+    Row,
+    Column,
+		Theme
   } from "carbon-components-svelte";
-  // import { ExpandableTile } from "carbon-components-svelte";
-  // let theme: CarbonTheme = 'g100';
+  let isSideNavOpen = false;
 </script>
 
 <main>
@@ -22,28 +27,33 @@
 		}}
 		theme="g100"
 	/>
-	<h1>Welcome to Yum Meh Yuck {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+
+	<Header company="aoalex.dev" platformName="Yum Meh Yuck" bind:isSideNavOpen>
+		<svelte:fragment slot="skip-to-content">
+			<SkipToContent />
+		</svelte:fragment>
+		<!-- <HeaderNav>
+			<HeaderNavItem href="/" text="Link 1" />
+			<HeaderNavItem href="/" text="Link 2" />
+			<HeaderNavItem href="/" text="Link 3" />
+			<HeaderNavMenu text="Menu">
+				<HeaderNavItem href="/" text="Link 1" />
+				<HeaderNavItem href="/" text="Link 2" />
+				<HeaderNavItem href="/" text="Link 3" />
+			</HeaderNavMenu>
+		</HeaderNav> -->
+	</Header>
+	
+	<Content>
+		<Grid>
+			<Row>
+				<Column>
+					<h1>Welcome to Yum Meh Yuck {name}!</h1>
+					<p>
+						let's get you started!
+					</p>
+				</Column>
+			</Row>
+		</Grid>
+	</Content>
 </main>
-
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
