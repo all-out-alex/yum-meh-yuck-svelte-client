@@ -1,23 +1,28 @@
 <script lang="ts">
 	export let name: string;
-	import { Accordion, AccordionItem } from "carbon-components-svelte";
+	// import type { CarbonTheme } from "carbon-components-svelte/types/Theme/Theme.svelte";
 	import {
     Theme,
-    RadioButtonGroup,
-    RadioButton,
+    // RadioButtonGroup,
+    // RadioButton,
   } from "carbon-components-svelte";
-
-  let theme = "g10";
+  // import { ExpandableTile } from "carbon-components-svelte";
+  // let theme: CarbonTheme = 'g100';
 </script>
 
 <main>
-	<Theme bind:theme />
-	<RadioButtonGroup legendText="Carbon theme" bind:selected={theme}>
-		{#each ["white", "g10", "g80", "g90", "g100"] as value}
-			<RadioButton labelText={value} {value} />
-		{/each}
-	</RadioButtonGroup>
-	<h1>Hello {name}!</h1>
+	<Theme
+		render="toggle"
+		toggle={{
+			themes: ["g80", "g10"],
+			labelA: "Enable light mode",
+			labelB: "Enable dark mode",
+			hideLabel: true,
+			size: "sm",
+		}}
+		theme="g100"
+	/>
+	<h1>Welcome to Yum Meh Yuck {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 
