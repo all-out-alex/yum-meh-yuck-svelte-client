@@ -1,27 +1,10 @@
 <script lang="ts">
 	export let name: string;
-	// import type { CarbonTheme } from "carbon-components-svelte/types/Theme/Theme.svelte";
-	import {
-    Theme,
-    // RadioButtonGroup,
-    // RadioButton,
-  } from "carbon-components-svelte";
-  // import { ExpandableTile } from "carbon-components-svelte";
-  // let theme: CarbonTheme = 'g100';
+	import ThemeToggle from './ThemeToggle.svelte'
 </script>
 
 <main>
-	<Theme
-		render="toggle"
-		toggle={{
-			themes: ["g80", "g10"],
-			labelA: "Enable light mode",
-			labelB: "Enable dark mode",
-			hideLabel: true,
-			size: "sm",
-		}}
-		theme="g100"
-	/>
+	<ThemeToggle/>
 	<h1>Welcome to Yum Meh Yuck {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
