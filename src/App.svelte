@@ -1,18 +1,42 @@
 <script lang="ts">
 	export let name: string;
+	import RestaurantList from './RestaurantList.svelte'
+	import { writable } from 'svelte/store'
   import {
     Header,
-    HeaderNav,
-    HeaderNavItem,
-    HeaderNavMenu,
     SkipToContent,
     Content,
     Grid,
     Row,
     Column,
-		Theme
+		Theme,
   } from "carbon-components-svelte";
   let isSideNavOpen = false;
+
+	$: restaurants = [];
+	const restaurantStore = writable(restaurants)
+	
+	restaurantStore.subscribe((restaurantList) => {
+		restaurants = restaurantList;
+	});
+
+	const addRestaurant = (restaurant) => {
+		restaurantStore.update(() => [...restaurants, restaurant]);
+	};
+
+	const restaurantsBaseList = [{name: 'Street 360'}, {name: 'Franklin Oyster House'}];
+	
+	const id = setInterval(() => {
+		if (restaurantsBaseList.length === 0) {
+			clearInterval(id);
+			console.log('cleared interval');
+		}
+		const restaurant = restaurantsBaseList.pop();
+		console.log('adding restaurant', restaurant);
+		if (restaurant) {
+			addRestaurant(restaurant);
+		}
+	}, 1000);
 </script>
 
 <main>
@@ -28,7 +52,7 @@
 		theme="g100"
 	/>
 
-	<Header company="aoalex.dev" platformName="Yum Meh Yuck" bind:isSideNavOpen>
+	<Header company="aoalex.dev" platformName="&#128523; &#128528; &#128533;" bind:isSideNavOpen>
 		<svelte:fragment slot="skip-to-content">
 			<SkipToContent />
 		</svelte:fragment>
@@ -48,10 +72,15 @@
 		<Grid>
 			<Row>
 				<Column>
-					<h1>Welcome to Yum Meh Yuck {name}!</h1>
+					<h1>Welcome to &#128523; &#128528; &#128533; {name}!</h1>
 					<p>
-						let's get you started!
+						Here's a list of all your restaurants!
 					</p>
+				</Column>
+			</Row>
+			<Row>
+				<Column>
+					<RestaurantList restaurants={restaurants}/>
 				</Column>
 			</Row>
 		</Grid>
